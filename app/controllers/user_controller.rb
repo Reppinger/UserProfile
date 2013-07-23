@@ -11,9 +11,9 @@ class UserController < UIViewController
     super
     self.view.backgroundColor = UIColor.whiteColor
     last_label = nil
-    ['id', 'name', 'email'].each do |prop|
+    User::PROPERTIES.each do |property|
       label = UILabel.alloc.initWithFrame(CGRectZero)
-      label.text = "#{prop.capitalize}:"
+      label.text = "#{property.capitalize}:"
       label.sizeToFit
       if last_label
         label.frame = [
@@ -27,7 +27,7 @@ class UserController < UIViewController
       last_label = label
       self.view.addSubview label
       value = UILabel.alloc.initWithFrame(CGRectZero)
-      value.text = self.user.send prop
+      value.text = self.user.send property
       value.sizeToFit
       value.frame = [
           [label.frame.origin.x + label.frame.size.width + 10,
