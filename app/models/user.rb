@@ -18,7 +18,7 @@ class User
     self.init
     PROPERTIES.each do |property|
       saved_value = decoder.decodeObjectForKey property.to_s
-      self.send("#{property}=", saved_value)
+      set_property property, saved_value
     end
     self
   end
