@@ -14,15 +14,8 @@ class UserController < UIViewController
     User::PROPERTIES.each do |property|
       last_label = create_property_title(last_label, property)
       self.view.addSubview last_label
-      value = UILabel.alloc.initWithFrame(CGRectZero)
-      value.text = self.user.send property
-      value.sizeToFit
-      value.frame = [
-          [last_label.frame.origin.x + last_label.frame.size.width + 10,
-           last_label.frame.origin.y],
-          value.frame.size
-      ]
-      self.view.addSubview value
+      value_label = create_property_value(last_label, property)
+      self.view.addSubview value_label
     end
     self.title = self.user.name
   end
@@ -42,4 +35,17 @@ class UserController < UIViewController
     end
     label
   end
+
+  def create_property_value(last_label, property)
+    value = UILabel.alloc.initWithFrame(CGRectZero)
+    value.text = self.user.send property
+    value.sizeToFit
+    value.frame = [
+        [last_label.frame.origin.x + last_label.frame.size.width + 10,
+         last_label.frame.origin.y],
+        value.frame.size
+    ]
+    value
+  end
+
 end
