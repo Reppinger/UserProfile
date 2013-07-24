@@ -7,8 +7,8 @@ class AppDelegate
   end
 
   def create_user_controller
-    user = User.new(id: '123', name: 'Clay', email: 'clay@mail.com', phone: '555-555-5555')
-    UserController.alloc.initWithUser user
+    @user = User.new(id: '123', name: 'Clay', email: 'clay@mail.com', phone: '555-555-5555')
+    UserController.alloc.initWithUser @user
   end
 
   def create_root_view_controller(user_controller)
