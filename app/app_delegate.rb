@@ -6,8 +6,16 @@ class AppDelegate
     true
   end
 
+  def applicationDidEnterBackground(application)
+    @user.save
+  end
+
+  private
+
   def create_user_controller
-    @user = User.new(id: '123', name: 'Clay', email: 'clay@mail.com', phone: '555-555-5555')
+    @user = User.load
+    @user ||=User.new(id: '123', name: 'Clay',
+                      email: 'clay@mail.com', phone: '555-555-5555')
     UserController.alloc.initWithUser @user
   end
 
